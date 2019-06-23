@@ -1,0 +1,24 @@
+{
+  "name": "@react-formbo/core",
+  "description": "Forms used to be easy, let's bring it back",
+  "version": "0.1.0",
+  "main": "./src/index.ts",
+  "repository": "https://github.com/treyhakanson/react-formbo",
+  "author": "Trey Hakanson <treyhakanson@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.22",
+    "awesome-typescript-loader": "^5.2.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "react": "^16.8.6",
+    "react-docgen": "^4.1.1",
+    "react-docgen-typescript": "^1.12.5",
+    "react-styleguidist": "^9.1.9",
+    "typescript": "^3.5.2",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.5"
+  }
+}

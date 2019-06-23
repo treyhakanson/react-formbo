@@ -1,0 +1,10 @@
+{
+  "name": "@react-formbo/validations",
+  "description": "react-formbo validations add-on",
+  "version": "0.1.0",
+  "main": "./src/index.ts",
+  "repository": "https://github.com/treyhakanson/react-formbo",
+  "author": "Trey Hakanson <treyhakanson@gmail.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
