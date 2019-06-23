@@ -1,13 +1,15 @@
-# React Formbo
+# React Forms
 
 ## Installation
 
 To install:
 
 ```sh
-# npm
-npm install --save react-formbo
-
-# yarn
-yarn add react-formbo
+yarn add @react-forms/core
+# or
+npm install --save @react-forms/core
 ```
+
+## Documentaion
+
+[Check it out](https://)

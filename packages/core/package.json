@@ -1,9 +1,9 @@
 {
-  "name": "@react-formbo/core",
+  "name": "@react-forms/core",
   "description": "Forms used to be easy, let's bring it back",
   "version": "0.1.0",
   "main": "./src/index.ts",
-  "repository": "https://github.com/treyhakanson/react-formbo",
+  "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
   "peerDependencies": {

@@ -1,9 +1,9 @@
 {
-  "name": "@react-formbo/validations",
-  "description": "react-formbo validations add-on",
+  "name": "@react-forms/validations",
+  "description": "react-forms validations add-on",
   "version": "0.1.0",
   "main": "./src/index.ts",
-  "repository": "https://github.com/treyhakanson/react-formbo",
+  "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
   "dependencies": {}

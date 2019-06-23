@@ -3,8 +3,8 @@ Simple synchronous validation form:
 ```js
 import React from "react";
 
-import { Field, Form } from "@react-formbo/core";
-import { isRequired } from "@react-formbo/validations";
+import { Field, Form } from "@react-forms/core";
+import { isRequired } from "@react-forms/validations";
 
 <div>
   <h1>My Cool Form</h1>

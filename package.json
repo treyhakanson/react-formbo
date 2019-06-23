@@ -1,18 +1,18 @@
 {
-  "name": "react-formbo-project",
+  "name": "react-forms-project",
   "private": true,
-  "description": "Top-level react-formbo package",
+  "description": "Top-level react-forms package",
   "version": "0.1.0",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "bugs": {
-    "url": "https://github.com/treyhakanson/react-formbo/issues"
+    "url": "https://github.com/treyhakanson/react-forms/issues"
   },
-  "homepage": "https://github.com/treyhakanson/react-formbo",
+  "homepage": "https://github.com/treyhakanson/react-forms",
   "license": "MIT",
   "scripts": {
     "serve-docs": "npx styleguidist server --config ./packages/core/styleguide.config.js",
     "build-docs": "npx styleguidist build --config ./packages/core/styleguide.config.js",
-    "dev": "yarn workspace @react-formbo/sandbox webpack-dev-server"
+    "dev": "yarn workspace @react-forms/sandbox webpack-dev-server"
   },
   "workspaces": [
     "packages/*"

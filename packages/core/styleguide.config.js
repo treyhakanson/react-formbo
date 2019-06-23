@@ -10,7 +10,7 @@ const tsConfigPath = path.resolve(__dirname, "../../tsconfig.json");
 const moduleRegex = /\/[A-Z]\w*\.tsx$/;
 
 module.exports = {
-  title: "react-formbo",
+  title: "react-forms",
   webpackConfig,
   components: () =>
     glob.sync(componentDir).filter(module => moduleRegex.test(module)),

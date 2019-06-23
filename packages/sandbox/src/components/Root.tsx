@@ -1,6 +1,6 @@
 import React from "react";
-import { Field, Form } from "@react-formbo/core";
-import { isRequired } from "@react-formbo/validations";
+import { Field, Form } from "@react-forms/core";
+import { isRequired } from "@react-forms/validations";
 
 interface IRootProps {}
 

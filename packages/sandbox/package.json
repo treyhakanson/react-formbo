@@ -1,10 +1,10 @@
 {
-  "name": "@react-formbo/sandbox",
+  "name": "@react-forms/sandbox",
   "private": true,
-  "description": "Quick sandbox for react-formbo development",
+  "description": "Quick sandbox for react-forms development",
   "version": "0.1.0",
   "main": "./src/index.ts",
-  "repository": "https://github.com/treyhakanson/react-formbo",
+  "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
   "devDependencies": {
