@@ -6,5 +6,11 @@
   "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "is-email": "^1.0.0",
+    "is-url": "^1.2.4"
+  },
+  "devDependencies": {
+    "@types/is-url": "^1.2.28"
+  }
 }

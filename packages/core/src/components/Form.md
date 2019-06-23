@@ -4,7 +4,7 @@ Simple synchronous validation form:
 import React from "react";
 
 import { Field, Form } from "@react-forms/core";
-import { isRequired } from "@react-forms/validations";
+import { isRequired, isEmail } from "@react-forms/validations";
 
 <div>
   <h1>My Cool Form</h1>
@@ -21,12 +21,21 @@ import { isRequired } from "@react-forms/validations";
       "last-name": {
         label: "Last Name",
         validations: [isRequired]
+      },
+      email: {
+        label: "Email",
+        validations: [isRequired, isEmail]
+      },
+      "phone-number": {
+        label: "Phone Number",
+        validations: [isRequired, isPhone]
       }
     }}
     formElementProps={{ action: "/", method: "post" }}>
     <Field name="first-name" />
     <Field name="middle-name" />
     <Field name="last-name" />
+    <Field name="email" />
   </Form>
 </div>;
 ```
