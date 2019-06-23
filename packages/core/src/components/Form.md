@@ -31,7 +31,7 @@ import { isRequired, isEmail } from "@react-forms/validations";
         validations: [isRequired, isPhone]
       }
     }}
-    formElementProps={{ action: "/", method: "post" }}>
+    formProps={{ action: "/", method: "post" }}>
     <Field name="first-name" />
     <Field name="middle-name" />
     <Field name="last-name" />
