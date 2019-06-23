@@ -4,10 +4,8 @@ import { ValidationFunction } from "../validation";
 
 /** Basic string map (string keys, values) */
 export type StringMap = { [key: string]: string };
-/** Form on change function */
-type OnChangeFunction = (event: React.FormEvent<HTMLInputElement>) => void;
-/** Form on blur function */
-type OnBlurFunction = (event: React.FormEvent<HTMLInputElement>) => void;
+/** Form event callback function (onChange, onBlur, etc.) */
+type FormEventCallback = (event: any) => void;
 /** Form error map for fields (field name is key) */
 export type FormFieldErrorMap = { [key: string]: StringMap };
 /** Form field metadata map for fields (field name is key) */
@@ -29,6 +27,7 @@ interface IFormProps {
     errors: FormFieldErrorMap,
     values: StringMap
   ) => void;
+  className?: string;
 }
 
 /** Form context */
@@ -43,8 +42,8 @@ export interface IFormContext {
 /** Form field props for initializing form component */
 interface IFormFieldProps {
   value: string;
-  onChange: OnChangeFunction;
-  onBlur: OnBlurFunction;
+  onChange: FormEventCallback;
+  onBlur: FormEventCallback;
 }
 
 /** Form state */
@@ -160,7 +159,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
    *
    * @param event the blur event
    */
-  private onFieldBlur = async (event: React.FormEvent<HTMLInputElement>) => {
+  private onFieldBlur: FormEventCallback = async event => {
     const {
       currentTarget: { name, value }
     } = event;
@@ -192,7 +191,7 @@ export default class Form extends React.Component<IFormProps, IFormState> {
    *
    * @param event the on change event
    */
-  private onFieldChange = async (event: React.FormEvent<HTMLInputElement>) => {
+  private onFieldChange: FormEventCallback = async event => {
     const {
       currentTarget: { name, value }
     } = event;
@@ -252,15 +251,25 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     return { submitting: isSubmitting };
   };
 
+  private getFormClassname = (): string => {
+    const { className } = this.props;
+    let classNames = ["ReactForm"];
+    if (className) {
+      classNames.push(className);
+    }
+    return classNames.join(" ");
+  };
+
   render() {
     const { formProps, children } = this.props;
     const { errors } = this.state;
     const fieldProps = this.createFieldProps();
     const formState = this.getFormState();
+    const className = this.getFormClassname();
 
     return (
       <FormContext.Provider value={{ fields: fieldProps, errors, formState }}>
-        <form {...formProps} onSubmit={this.onFormSubmit}>
+        <form {...formProps} className={className} onSubmit={this.onFormSubmit}>
           {children}
         </form>
       </FormContext.Provider>
