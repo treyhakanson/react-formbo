@@ -35,31 +35,37 @@ Creating a form with `react-forms` is dead simple:
 
 ```js
 import React from "react";
-import {Form, Field} from "@react-froms/core";
-import {isRequired, isEmail} from "@react-forms/validations";
+import { Form, Field } from "@react-froms/core";
+import { isRequired, isEmail } from "@react-forms/validations";
 
 class MyCoolForm extends React.Component {
-    render() {
-        <Form fields={
-            "first-name": {
-                label: "First Name",
-                validations: [isRequired]
-            },
-            "last-name": {
-                label: "Last Name",
-                validations: [isRequired]
-            },
-            email: {
-                label: "Email",
-                validations: [isRequired, isEmail]
-            }
-        } formProps={{action: "/", method: "post"}}>
-            <Field name="first-name" />
-            <Field name="last-name" />
-            <Field name="email" />
-            <Field.Submit />
-        </Form>
+  onSubmit(event, shouldSubmit, errors, values) {
+    if (shouldSubmit) {
+      alert("Looks good to me!");
     }
+  }
+
+  render() {
+    <Form
+      fields={{
+        "first-name": {
+          validations: [isRequired]
+        },
+        "last-name": {
+          validations: [isRequired]
+        },
+        email: {
+          validations: [isRequired, isEmail]
+        }
+      }}
+      formProps={{ action: "/", method: "post" }}
+      onSubmit={this.onSubmit}>
+      <Field name="first-name" label="First Name" />
+      <Field name="last-name" label="Last Name" />
+      <Field name="email" label="Email" />
+      <input type="submit" value="Submit" />
+    </Form>;
+  }
 }
 ```
 
