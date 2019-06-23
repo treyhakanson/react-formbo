@@ -12,4 +12,4 @@ npm install --save @react-forms/core
 
 ## Documentaion
 
-[Check it out](https://)
+More detailed documentation can be found [here.](https://treyhakanson.github.io/react-forms)
