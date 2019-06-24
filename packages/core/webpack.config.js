@@ -5,9 +5,8 @@ const entrypoint = path.resolve(__dirname, "./src/index.ts");
 const outputDir = path.resolve(__dirname, "./dist");
 
 module.exports = {
-  mode: "development",
   entry: entrypoint,
-  devtool: "inline-source-map",
+  mode: "production",
   output: {
     filename: "[name].bundle.js",
     path: outputDir

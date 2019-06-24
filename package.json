@@ -10,9 +10,11 @@
   "homepage": "https://github.com/treyhakanson/react-forms",
   "license": "MIT",
   "scripts": {
-    "serve-docs": "npx styleguidist server --config ./packages/core/styleguide.config.js",
-    "build-docs": "npx styleguidist build --config ./packages/core/styleguide.config.js",
-    "dev": "yarn workspace @react-forms/sandbox webpack-dev-server"
+    "sandbox:dev": "yarn workspace @react-forms/sandbox dev",
+    "core:build": "yarn workspace @react-forms/core build",
+    "validations:build": "yarn workspace @react-forms/validations build",
+    "docs:server": "npx styleguidist server --config ./packages/core/styleguide.config.js",
+    "docs:build": "npx styleguidist build --config ./packages/core/styleguide.config.js"
   },
   "workspaces": [
     "packages/*"

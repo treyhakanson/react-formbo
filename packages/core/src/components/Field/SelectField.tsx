@@ -3,13 +3,15 @@ import React from "react";
 import { IFormContext, StringMap } from "../Form";
 import { IBaseInputFieldProps } from "./interfaces";
 import BaseField from "./BaseField";
+import ErrorList from "./ErrorList";
+import Label from "./Label";
 
-interface ISelectOption {
+export interface ISelectOption {
   value: string;
   label: string;
 }
 
-interface ISelectFieldProps extends IBaseInputFieldProps {
+export interface ISelectFieldProps extends IBaseInputFieldProps {
   options: Array<ISelectOption>;
 }
 
@@ -34,11 +36,7 @@ export default class SelectField extends BaseField<ISelectFieldProps> {
 
     return (
       <div className={this.getWrapperClassName(invalid, className)} {...props}>
-        {label && (
-          <label className="Field__Label" htmlFor={name}>
-            {label}
-          </label>
-        )}
+        <Label name={name} label={label} />
         <select className="Field__Select" name={name} id={name} {...inputProps}>
           {options.map(({ value, label }) => (
             <option key={value} value={value}>
@@ -46,6 +44,7 @@ export default class SelectField extends BaseField<ISelectFieldProps> {
             </option>
           ))}
         </select>
+        <ErrorList errors={inputErrors} />
       </div>
     );
   }

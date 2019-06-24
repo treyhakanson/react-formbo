@@ -7,6 +7,9 @@
   "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
   "devDependencies": {
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.16",

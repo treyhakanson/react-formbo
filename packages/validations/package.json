@@ -2,10 +2,15 @@
   "name": "@react-forms/validations",
   "description": "react-forms validations add-on",
   "version": "0.1.0",
-  "main": "./src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "https://github.com/treyhakanson/react-forms",
   "author": "Trey Hakanson <treyhakanson@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "prepublish": "yarn run build",
+    "build": "tsc"
+  },
   "dependencies": {
     "is-email": "^1.0.0",
     "is-url": "^1.2.4"

@@ -1,4 +1,4 @@
-⚠️ This project is under heavy development and is not currently available ⚠️
+⚠️ This project is under heavy development ⚠️
 
 # React Forms
 
@@ -62,10 +62,10 @@ class MyCoolForm extends React.Component {
       }}
       formProps={{ action: "/", method: "post" }}
       onSubmit={this.onSubmit}>
-      <Field name="first-name" label="First Name" />
-      <Field name="last-name" label="Last Name" />
-      <Field name="email" label="Email" />
-      <input type="submit" value="Submit" />
+      <Field.Input name="first-name" label="First Name" />
+      <Field.Input name="last-name" label="Last Name" />
+      <Field.Input name="email" label="Email" />
+      <Field.Submit text="Submit" />
     </Form>;
   }
 }
@@ -73,15 +73,13 @@ class MyCoolForm extends React.Component {
 
 ### Custom Fields
 
-For convenience, `react-forms` provides a built-in `Field` component that is easily stylized and suitable for most use cases. However, there may be scenarios where it just doesn't cut it. Luckily, creating a custom field is easy! `react-forms` leverages React's new context API, so all you need to do is have your custom field subscribe to it:
+For convenience, `react-forms` provides a built-in `Field` component that is easily stylized and suitable for most use cases. However, there may be scenarios where it just doesn't cut it. Luckily, creating a custom field is easy! `react-forms` leverages React's new context API, so all you need to do is have your custom field subscribe to it. A helper base component has been provided for convenience:
 
 ```js
 import React from "react";
-import { FormContext } from "@react-forms/core";
+import { BaseField } from "@react-forms/core";
 
-class MyCoolField extends React.Component {
-  static contextType = FormContext;
-
+class MyCoolField extends BaseField {
   render() {
     const { name } = this.props;
     const fieldProps = this.context.fields[name];
@@ -96,11 +94,9 @@ See, easy! its **very important** to note that in the above example, the input e
 
 ```js
 import React from "react";
-import { FormContext } from "@react-forms/core";
+import { BaseField } from "@react-forms/core";
 
-class MyCoolField extends React.Component {
-  static contextType = FormContext;
-
+class MyCoolField extends BaseField {
   myCoolOnChangeMethod = value => {
     const {
       inputProps: { onChange }

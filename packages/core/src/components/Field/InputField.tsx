@@ -3,8 +3,10 @@ import React from "react";
 import { IFormContext, StringMap } from "../Form";
 import { IBaseInputFieldProps } from "./interfaces";
 import BaseField from "./BaseField";
+import Label from "./Label";
+import ErrorList from "./ErrorList";
 
-interface IInputFieldProps extends IBaseInputFieldProps {}
+export interface IInputFieldProps extends IBaseInputFieldProps {}
 
 /** Field component */
 export default class InputField extends BaseField<IInputFieldProps> {
@@ -26,11 +28,7 @@ export default class InputField extends BaseField<IInputFieldProps> {
 
     return (
       <div className={this.getWrapperClassName(invalid, className)} {...props}>
-        {label && (
-          <label className="Field__Label" htmlFor={name}>
-            {label}
-          </label>
-        )}
+        <Label name={name} label={label} />
         <input
           className="Field__Input"
           id={name}
@@ -38,16 +36,7 @@ export default class InputField extends BaseField<IInputFieldProps> {
           type="text"
           {...inputProps}
         />
-        <ul className="Field__ErrorList">
-          {Object.entries(inputErrors).map(([validationName, error], i) => (
-            <li
-              className="Field__ErrorList__Error"
-              data-validation-name={validationName}
-              key={validationName}>
-              {error}
-            </li>
-          ))}
-        </ul>
+        <ErrorList errors={inputErrors} />
       </div>
     );
   }

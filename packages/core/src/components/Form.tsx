@@ -5,16 +5,16 @@ import { ValidationFunction } from "../validation";
 /** Basic string map (string keys, values) */
 export type StringMap = { [key: string]: string };
 /** Form event callback function (onChange, onBlur, etc.) */
-type FormEventCallback = (event: any) => void;
+export type FormEventCallback = (event: any) => void;
 /** Form error map for fields (field name is key) */
 export type FormFieldErrorMap = { [key: string]: StringMap };
 /** Form field metadata map for fields (field name is key) */
-type FormFieldMetaMap = { [key: string]: IFormFieldMeta };
+export type FormFieldMetaMap = { [key: string]: IFormFieldMeta };
 /** Form additional props map for fields (field name is key) */
-type FormFieldPropsMap = { [key: string]: IFormFieldProps };
+export type FormFieldPropsMap = { [key: string]: IFormFieldProps };
 
 /** Form props */
-interface IFormProps {
+export interface IFormProps {
   fields: {
     [key: string]: {
       validations: { [key: string]: ValidationFunction };
@@ -40,14 +40,14 @@ export interface IFormContext {
 }
 
 /** Form field props for initializing form component */
-interface IFormFieldProps {
+export interface IFormFieldProps {
   value: string;
   onChange: FormEventCallback;
   onBlur: FormEventCallback;
 }
 
 /** Form state */
-interface IFormState {
+export interface IFormState {
   isSubmitting: boolean;
   errors: FormFieldErrorMap;
   fieldValues: StringMap;
@@ -55,7 +55,7 @@ interface IFormState {
 }
 
 /** Form field metadata */
-interface IFormFieldMeta {
+export interface IFormFieldMeta {
   touched: boolean;
 }
 

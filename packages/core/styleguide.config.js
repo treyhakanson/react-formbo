@@ -6,7 +6,7 @@ const ReactDocgenTypescript = require("react-docgen-typescript");
 
 const webpackConfig = require("./webpack.config.js");
 const componentDir = path.resolve(__dirname, "src/components/**/*.tsx");
-const tsConfigPath = path.resolve(__dirname, "../../tsconfig.json");
+const tsConfigPath = path.resolve(__dirname, "./tsconfig.json");
 const styleguideDir = path.resolve(__dirname, "../../docs");
 const moduleRegex = /\/[A-Z]\w*\.tsx$/;
 

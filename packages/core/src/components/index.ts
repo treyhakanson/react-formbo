@@ -5,3 +5,4 @@ export {
   StringMap
 } from "./Form";
 export { default as Field } from "./Field";
+export * from "./Field";
