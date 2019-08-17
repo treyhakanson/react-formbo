@@ -12,26 +12,37 @@ import { isRequired, isEmail } from "@react-forms/validations";
     fields={{
       "first-name": {
         label: "First Name",
-        validations: [isRequired]
+        validations: {
+          required: isRequired
+        }
       },
       "middle-name": {
         label: "Middle Name",
-        validations: []
+        validations: {}
       },
       "last-name": {
         label: "Last Name",
-        validations: [isRequired]
+        validations: {
+          required: isRequired
+        }
       },
       email: {
         label: "Email",
-        validations: [isRequired, isEmail]
+        validations: {
+          required: isRequired,
+          email: isEmail
+        }
       },
       "phone-number": {
         label: "Phone Number",
-        validations: [isRequired, isPhone]
+        validations: {
+          required: isRequired,
+          phone: isPhone
+        }
       }
     }}
-    formProps={{ action: "/", method: "post" }}>
+    formProps={{ action: "/", method: "post" }}
+  >
     <Field name="first-name" />
     <Field name="middle-name" />
     <Field name="last-name" />

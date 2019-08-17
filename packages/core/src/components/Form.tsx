@@ -268,8 +268,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     const formState = this.getFormState();
     const className = this.getFormClassname();
 
-    console.log(this.state, this.props);
-
     return (
       <FormContext.Provider value={{ fields: fieldProps, errors, formState }}>
         <form {...formProps} className={className} onSubmit={this.onFormSubmit}>
