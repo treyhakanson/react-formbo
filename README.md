@@ -14,7 +14,7 @@ npm install --save @react-forms/core
 
 ## Overview
 
-There's a lot of other form libraries out there. Most of them are bloated, unintutive, and overcomplicated. Some of them are even built around violating core design principles (looking at you `redux-form`!). Forms used to be easy, and `react-forms` seeks to bring things back. React forms has:
+There's a lot of other form libraries out there. Most of them are bloated, unintutive, and overcomplicated. Some of them are even built around violating core design principles of the frameworks they work with (looking at you `redux-form`!). Forms used to be easy, and `react-forms` seeks to bring things back. React forms has:
 
 - 🚀 Zero dependencies in the core
 - 🤤 Dead simple API
@@ -61,7 +61,8 @@ class MyCoolForm extends React.Component {
         }
       }}
       formProps={{ action: "/", method: "post" }}
-      onSubmit={this.onSubmit}>
+      onSubmit={this.onSubmit}
+    >
       <Field.Input name="first-name" label="First Name" />
       <Field.Input name="last-name" label="Last Name" />
       <Field.Input name="email" label="Email" />
@@ -73,48 +74,44 @@ class MyCoolForm extends React.Component {
 
 ### Custom Fields
 
-For convenience, `react-forms` provides a built-in `Field` component that is easily stylized and suitable for most use cases. However, there may be scenarios where it just doesn't cut it. Luckily, creating a custom field is easy! `react-forms` leverages React's new context API, so all you need to do is have your custom field subscribe to it. A helper base component has been provided for convenience:
+For convenience, `react-forms` provides a built-in `Field` component that is easily stylized and suitable for most use cases. However, there may be scenarios where it just doesn't cut it. Luckily, creating a custom field is easy! `react-forms` leverages React's new context API, so all you need to do is have your custom field subscribe to it. A helper has been provided for convenience:
 
 ```js
-import React from "react";
-import { BaseField } from "@react-forms/core";
+import * as React from "react";
+import { withForm } from "@react-forms/core";
 
-class MyCoolField extends BaseField {
+class MyCoolField extends React.Component {
   render() {
-    const { name } = this.props;
-    const fieldProps = this.context.fields[name];
-    const fieldErrors = this.context.errors[name];
-
-    return <input {...fieldProps.inputProps} />;
+    const { errors, inputProps } = this.props;
+    console.error(errors);
+    return <input {...inputProps} />;
   }
 }
+
+export default withForm(MyCoolField);
 ```
 
-See, easy! its **very important** to note that in the above example, the input element is given its props from `fieldProps.inputProps`. These props contain things like on change handlers and such that `react-forms` needs on its fields to function properly. Overriding components from `inputProps` is easy too:
+See, easy! its **very important** to note that in the above example, the input element is given all attributes of `this.props.inputProps`. These props contain things like on change handlers and such that `react-forms` needs on its fields to function properly. Overriding attributes from `inputProps` is easy too though:
 
 ```js
-import React from "react";
-import { BaseField } from "@react-forms/core";
+import * as React from "react";
+import { withForm } from "@react-forms/core";
 
-class MyCoolField extends BaseField {
-  myCoolOnChangeMethod = value => {
-    const {
-      inputProps: { onChange }
-    } = this.context.fields[name];
+class MyCoolField extends React.Component {
+  _myCoolOnChangeMethod = value => {
+    const { onChange } = this.props.inputProps;
     console.log("Look at me doing extra stuff 😎");
     onChange(value);
   };
 
   render() {
-    const { name } = this.props;
-    const fieldProps = this.context.fields[name];
-    const fieldErrors = this.context.errors[name];
-
-    return (
-      <input {...fieldProps.inputProps} onChange={this.myCoolOnChangeMethod} />
-    );
+    const { inputProps, errors } = this.props;
+    console.error(errors);
+    return <input {...inputProps} onChange={this._myCoolOnChangeMethod} />;
   }
 }
+
+withForm(MyCoolField);
 ```
 
 ### Styling
@@ -131,7 +128,7 @@ class MyCoolField extends BaseField {
 </div>
 ```
 
-`react-forms` also passes down css classnames, so you can even use `styled-components` to extend them. Here's an example of applying some quick styling:
+`react-forms` also passes down css classnames, so you can CSS-in-JS libraries like `styled-components` to extend them. Here's an example of applying some quick styling:
 
 ```js
 const MyCustomField = styled(Field)`
