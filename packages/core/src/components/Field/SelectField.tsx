@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IFormContext, StringMap } from "../Form";
-import { IBaseInputFieldProps } from "./interfaces";
+import { IBaseInputFieldProps } from "./types";
 import BaseField from "./BaseField";
 import ErrorList from "./ErrorList";
 import Label from "./Label";

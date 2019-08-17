@@ -9,7 +9,8 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "yarn run build",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
   "peerDependencies": {
     "react": "^16.8.6"

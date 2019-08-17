@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IBaseFieldProps } from "./interfaces";
+import { IBaseFieldProps } from "./types";
 
 export interface ISubmitFieldProps extends IBaseFieldProps {
   text: string;

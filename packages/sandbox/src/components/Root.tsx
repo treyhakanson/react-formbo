@@ -3,15 +3,17 @@ import styled from "styled-components";
 import { Field, Form, StringMap, FormFieldErrorMap } from "@react-forms/core";
 import { isRequired, isEmail } from "@react-forms/validations";
 
+import CustomField from "./CustomField";
+
 interface IRootProps {}
 
 interface IRootState {}
 
-const CustomField = styled(Field.Input)`
+const StyledField = styled(Field.Input)`
   font-family: Avenir;
 `;
 
-const CustomForm = styled(Form)`
+const StyledForm = styled(Form)`
   border: 1px solid black;
 `;
 
@@ -31,7 +33,7 @@ export default class Root extends React.Component<IRootProps, IRootState> {
     return (
       <div>
         <h1>My Cool Form</h1>
-        <CustomForm
+        <StyledForm
           fields={{
             "first-name": {
               validations: {
@@ -53,17 +55,24 @@ export default class Root extends React.Component<IRootProps, IRootState> {
               validations: {
                 required: isRequired
               }
+            },
+            "custom-field": {
+              validations: {
+                required: isRequired
+              }
             }
           }}
           formProps={{ action: "/", method: "post" }}
-          onSubmit={this.onSubmit}>
-          <CustomField
+          onSubmit={this.onSubmit}
+        >
+          <StyledField
             name="first-name"
             label="First Name"
             inputProps={{ placeholder: "Name" }}
           />
-          <CustomField name="last-name" label="Last Name" />
-          <CustomField name="email" label="Email" />
+          <StyledField name="last-name" label="Last Name" />
+          <CustomField name="custom-field" label="My Custom Field" />
+          <StyledField name="email" label="Email" />
           <Field.Select
             name="favorite-color"
             label="Favorite Color"
@@ -74,7 +83,7 @@ export default class Root extends React.Component<IRootProps, IRootState> {
             ]}
           />
           <Field.Submit text="Submit" />
-        </CustomForm>
+        </StyledForm>
       </div>
     );
   }

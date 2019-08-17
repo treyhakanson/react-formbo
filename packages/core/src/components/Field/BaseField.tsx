@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IFormContext, FormContext } from "../Form";
-import { IBaseInputFieldProps } from "./interfaces";
+import { IBaseInputFieldProps } from "./types";
 
 export default abstract class BaseField<
   Props extends IBaseInputFieldProps,

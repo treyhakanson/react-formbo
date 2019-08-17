@@ -32,8 +32,11 @@ export interface IFormProps {
 
 /** Form context */
 export interface IFormContext {
+  /** Form field information */
   fields: { [key: string]: IFormFieldProps };
+  /** Props to pass to the top-level form element */
   errors: FormFieldErrorMap;
+  /** Form state information */
   formState: {
     submitting: boolean;
   };
@@ -48,9 +51,13 @@ export interface IFormFieldProps {
 
 /** Form state */
 export interface IFormState {
+  /** Whether or not the form is submitting */
   isSubmitting: boolean;
+  /** Field errors */
   errors: FormFieldErrorMap;
+  /** Additional props to provide to fields */
   fieldValues: StringMap;
+  /** Field metadata */
   fieldMeta: FormFieldMetaMap;
 }
 
@@ -80,33 +87,27 @@ function getDefaultFieldMeta(): IFormFieldMeta {
 /** Form component */
 export default class Form extends React.Component<IFormProps, IFormState> {
   static defaultProps = {
-    /** Form field information */
     fields: {},
-    /** Props to pass to the top-level form element */
     formProps: {}
   };
 
-  readonly state: IFormState = {
-    /** Whether or not the form is submitting */
-    isSubmitting: false,
-    /** Field errors */
-    errors: {},
-    /** Additional props to provide to fields */
-    fieldValues: {},
-    /** Field metadata */
-    fieldMeta: {}
-  };
+  readonly state: IFormState;
 
-  componentDidMount() {
-    const { fields } = this.props;
-    const fieldMeta = Object.keys(fields).reduce(
-      (fieldMeta: FormFieldMetaMap, fieldName) => {
-        fieldMeta[fieldName] = getDefaultFieldMeta();
-        return fieldMeta;
-      },
-      {}
-    );
-    this.setState({ fieldMeta });
+  constructor(props: IFormProps) {
+    super(props);
+    let fieldMeta: FormFieldMetaMap = {};
+    let errors: FormFieldErrorMap = {};
+    Object.keys(props.fields).forEach(fieldName => {
+      fieldMeta[fieldName] = getDefaultFieldMeta();
+      errors[fieldName] = {};
+      return fieldMeta;
+    });
+    this.state = {
+      isSubmitting: false,
+      errors,
+      fieldValues: {},
+      fieldMeta
+    };
   }
 
   /**
@@ -266,6 +267,8 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     const fieldProps = this.createFieldProps();
     const formState = this.getFormState();
     const className = this.getFormClassname();
+
+    console.log(this.state, this.props);
 
     return (
       <FormContext.Provider value={{ fields: fieldProps, errors, formState }}>

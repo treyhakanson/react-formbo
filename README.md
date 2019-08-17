@@ -138,3 +138,18 @@ const MyCustomField = styled(Field)`
   }
 `;
 ```
+
+## Developing Locally
+
+If you'd like to build and develop this project locally, just pull down the repo, build the libraries, and run the sandbox:
+
+```sh
+# Build everything
+yarn build
+
+# Watch packages being developed
+yarn core:dev
+
+# Start the sandbpx
+yarn sandbox:dev
+```
