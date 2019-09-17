@@ -36,6 +36,8 @@ export interface IFormContext {
   fields: { [key: string]: IFormFieldProps };
   /** Props to pass to the top-level form element */
   errors: FormFieldErrorMap;
+  /** callback to update the value of a field */
+  updateFieldValue: (name: string, value: string) => void;
   /** Form state information */
   formState: {
     submitting: boolean;
@@ -100,7 +102,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     Object.keys(props.fields).forEach(fieldName => {
       fieldMeta[fieldName] = getDefaultFieldMeta();
       errors[fieldName] = {};
-      return fieldMeta;
     });
     this.state = {
       isSubmitting: false,
@@ -109,6 +110,15 @@ export default class Form extends React.Component<IFormProps, IFormState> {
       fieldMeta
     };
   }
+
+  updateFieldValue = (name: string, value: string) => {
+    this.setState({
+      fieldValues: {
+        ...this.state.fieldValues,
+        [name]: value
+      }
+    });
+  };
 
   /**
    * Update errors for a given field
@@ -177,15 +187,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
       this.updateErrors(name, errors);
     }
   };
-
-  private updateFieldValue(name: string, value: string) {
-    this.setState({
-      fieldValues: {
-        ...this.state.fieldValues,
-        [name]: value
-      }
-    });
-  }
 
   /**
    * Generic on change method for a field
@@ -269,7 +270,14 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     const className = this.getFormClassname();
 
     return (
-      <FormContext.Provider value={{ fields: fieldProps, errors, formState }}>
+      <FormContext.Provider
+        value={{
+          fields: fieldProps,
+          errors,
+          formState,
+          updateFieldValue: this.updateFieldValue
+        }}
+      >
         <form {...formProps} className={className} onSubmit={this.onFormSubmit}>
           {children}
         </form>

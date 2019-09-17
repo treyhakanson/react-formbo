@@ -17,6 +17,17 @@ export interface ISelectFieldProps extends IBaseInputFieldProps {
 
 /** Field component */
 export default class SelectField extends BaseField<ISelectFieldProps> {
+  componentDidMount() {
+    const ctx = this.context as IFormContext;
+    const { name, options, inputProps = {} } = this.props;
+    this.validate();
+    let initialValue = (inputProps as any).initialValue || "";
+    if (options.length !== 0) {
+      initialValue = options[0].value;
+    }
+    ctx.updateFieldValue(name, initialValue);
+  }
+
   render() {
     const ctx = this.context as IFormContext;
     const {
