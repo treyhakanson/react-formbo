@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IFormContext, FormContext } from "../Form";
+import { IFormContext, FormContext, IFormFieldProps } from "../Form";
 import { IBaseInputFieldProps } from "./types";
 
 export default abstract class BaseField<
@@ -10,9 +10,18 @@ export default abstract class BaseField<
   static contextType = FormContext;
 
   componentDidMount() {
+    const ctx = this.context as IFormContext;
+    const { name, initialValue = "" } = this.props;
+    this.validate();
+    ctx.updateFieldValue(name, initialValue);
+  }
+
+  /** Validate that a field is configured correctly */
+  protected validate() {
     const { name } = this.props;
     const ctx = this.context as IFormContext;
-    if (!ctx.fields[name]) {
+    const fieldProps = ctx.fields[name];
+    if (!fieldProps) {
       throw new Error(
         `field with name "${name}" has no corresponding entry in a parent form.`
       );

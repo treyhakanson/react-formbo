@@ -36,6 +36,8 @@ export interface IFormContext {
   fields: { [key: string]: IFormFieldProps };
   /** Props to pass to the top-level form element */
   errors: FormFieldErrorMap;
+  /** callback to update the value of a field */
+  updateFieldValue: (name: string, value: string) => void;
   /** Form state information */
   formState: {
     submitting: boolean;
@@ -100,7 +102,6 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     Object.keys(props.fields).forEach(fieldName => {
       fieldMeta[fieldName] = getDefaultFieldMeta();
       errors[fieldName] = {};
-      return fieldMeta;
     });
     this.state = {
       isSubmitting: false,
@@ -110,6 +111,18 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     };
   }
 
+  updateFieldValue = (name: string, value: string) => {
+    this.setState(state => {
+      return {
+        ...state,
+        fieldValues: {
+          ...state.fieldValues,
+          [name]: value
+        }
+      };
+    });
+  };
+
   /**
    * Update errors for a given field
    *
@@ -117,11 +130,14 @@ export default class Form extends React.Component<IFormProps, IFormState> {
    * @param errors the field's errors
    */
   private updateErrors = (name: string, errors: StringMap) => {
-    this.setState({
-      errors: {
-        ...this.state.errors,
-        [name]: errors
-      }
+    this.setState(state => {
+      return {
+        ...state,
+        errors: {
+          ...state.errors,
+          [name]: errors
+        }
+      };
     });
   };
 
@@ -167,25 +183,19 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     const { fieldMeta } = this.state;
     const meta = fieldMeta[name];
     if (!meta.touched) {
-      this.setState({
-        fieldMeta: {
-          ...fieldMeta,
-          [name]: { ...meta, touched: true }
-        }
+      this.setState(state => {
+        return {
+          ...state,
+          fieldMeta: {
+            ...state.fieldMeta,
+            [name]: { ...meta, touched: true }
+          }
+        };
       });
       const errors = await this.validateField(name, value);
       this.updateErrors(name, errors);
     }
   };
-
-  private updateFieldValue(name: string, value: string) {
-    this.setState({
-      fieldValues: {
-        ...this.state.fieldValues,
-        [name]: value
-      }
-    });
-  }
 
   /**
    * Generic on change method for a field
@@ -244,7 +254,9 @@ export default class Form extends React.Component<IFormProps, IFormState> {
         0
       ) === 0;
     onSubmit(event, shouldSubmit, allErrors, fieldValues);
-    this.setState({ errors: allErrors });
+    this.setState(state => {
+      return { ...state, errors: allErrors };
+    });
   };
 
   private getFormState = () => {
@@ -269,7 +281,14 @@ export default class Form extends React.Component<IFormProps, IFormState> {
     const className = this.getFormClassname();
 
     return (
-      <FormContext.Provider value={{ fields: fieldProps, errors, formState }}>
+      <FormContext.Provider
+        value={{
+          fields: fieldProps,
+          errors,
+          formState,
+          updateFieldValue: this.updateFieldValue
+        }}
+      >
         <form {...formProps} className={className} onSubmit={this.onFormSubmit}>
           {children}
         </form>

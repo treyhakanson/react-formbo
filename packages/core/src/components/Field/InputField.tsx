@@ -17,6 +17,7 @@ export default class InputField extends BaseField<IInputFieldProps> {
       label = "",
       className = "",
       inputProps: additionalInputProps,
+      initialValue,
       ...props
     } = this.props;
     const inputProps = {
