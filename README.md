@@ -1,6 +1,6 @@
-⚠️ This project is under heavy development ⚠️
-
 # React Forms
+
+[![npm version](https://badge.fury.io/js/%40react-forms%2Fcore.svg)](https://badge.fury.io/js/%40react-forms%2Fcore)
 
 ## Installation
 
