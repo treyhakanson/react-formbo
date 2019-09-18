@@ -68,6 +68,7 @@ export default class Root extends React.Component<IRootProps, IRootState> {
           <StyledField
             name="first-name"
             label="First Name"
+            initialValue="John"
             inputProps={{ placeholder: "Name" }}
           />
           <StyledField name="last-name" label="Last Name" />

@@ -11,9 +11,9 @@ export default abstract class BaseField<
 
   componentDidMount() {
     const ctx = this.context as IFormContext;
-    const { name, inputProps = {} } = this.props;
+    const { name, initialValue = "" } = this.props;
     this.validate();
-    ctx.updateFieldValue(name, (inputProps as any).initialValue || "");
+    ctx.updateFieldValue(name, initialValue);
   }
 
   /** Validate that a field is configured correctly */

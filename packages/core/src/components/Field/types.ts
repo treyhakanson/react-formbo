@@ -2,6 +2,7 @@
 export interface IBaseFieldProps {
   className?: string;
   inputProps?: object;
+  initialValue?: string;
 }
 
 export interface IBaseInputFieldProps extends IBaseFieldProps {
