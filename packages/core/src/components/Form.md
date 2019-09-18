@@ -43,7 +43,7 @@ import { isRequired, isEmail } from "@react-forms/validations";
     }}
     formProps={{ action: "/", method: "post" }}
   >
-    <Field name="first-name" />
+    <Field name="first-name" initialValue="John" />
     <Field name="middle-name" />
     <Field name="last-name" />
     <Field name="email" />
